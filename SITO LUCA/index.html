@@ -1,0 +1,1233 @@
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dott. Luca Buran | Psicologo e Sessuologo</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500;700&amp;family=Lora:ital,wght@0,400;0,600;1,400&amp;display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* --- VARIABILI & RESET --- */
+        :root {
+            --bg-color: #F9F9F9;
+            --text-dark: #1F2937;
+            --text-muted: #4B5563;
+            --primary-blue: #2C3E50;
+            --primary-blue-hover: #1A252F;
+            --accent-sand: #D4A373;
+            --accent-light: #EFE6DD;
+            --card-bg: #FFFFFF;
+            --radius-lg: 16px;
+            --radius-md: 8px;
+            --font-serif: 'Lora', serif;
+            --font-sans: 'DM Sans', sans-serif;
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --stripe-purple: #635bff;
+            /* Colore brand Stripe opzionale */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+            border-radius: var(--radius-md);
+        }
+
+        /* --- UTILITIES --- */
+        .container {
+            max-width: 80vw;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-blue-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(44, 62, 80, 0.15);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-blue);
+            color: white;
+        }
+
+        /* Bottone specifico per l'acquisto */
+        .btn-buy {
+            background-color: var(--primary-blue);
+            width: 100%;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-buy:hover {
+            background-color: #000;
+        }
+
+        .tag {
+            background-color: var(--accent-light);
+            color: var(--primary-blue);
+            padding: 6px 16px;
+            border-radius: 4px;
+            font-size: 0.80rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            display: inline-block;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-serif);
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+
+        /* --- ANIMATIONS --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- HEADER --- */
+        header {
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: rgba(249, 249, 249, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--accent-sand);
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.85rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-sand);
+        }
+
+        .hide-mobile {
+            display: flex;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            padding: 80px 0 60px;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.8rem;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            color: var(--primary-blue);
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            max-width: 500px;
+        }
+
+        .specializations-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .spec-badge {
+            font-size: 0.85rem;
+            padding: 4px 12px;
+            border: 1px solid #ddd;
+            border-radius: 50px;
+            color: var(--text-muted);
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 550px;
+            border-radius: var(--radius-lg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-img-main {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            border-radius: var(--radius-lg);
+            box-shadow: 20px 20px 0px var(--accent-light);
+            z-index: 2;
+        }
+
+        /* --- BENTO GRID / PROFILE --- */
+        .features {
+            padding: 100px 0;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 20px;
+        }
+
+        .bento-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #eee;
+            transition: var(--transition);
+        }
+
+        .bento-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .card-bio {
+            grid-column: 1 / 2;
+            grid-row: 1 / 3;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .card-bio h2 {
+            font-size: 2.2rem;
+            margin-bottom: 16px;
+        }
+
+        .card-bio p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .card-photo {
+            grid-column: 2 / 3;
+            grid-row: 1 / 2;
+            padding: 0;
+            min-height: 250px;
+        }
+
+        .card-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: var(--radius-lg);
+        }
+
+        .card-stats {
+            grid-column: 3 / 4;
+            grid-row: 1 / 2;
+            background: var(--primary-blue);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .card-stats h3 {
+            color: white;
+            font-size: 2.5rem;
+        }
+
+        .card-stats p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .card-detail {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-detail h4 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .list-dot li {
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .list-dot li::before {
+            content: '•';
+            color: var(--accent-sand);
+            font-size: 1.5em;
+            line-height: 0;
+        }
+
+        /* --- PRICING (Spostata SOPRA i servizi) --- */
+        .pricing {
+            padding: 100px 0;
+            text-align: center;
+            background-color: var(--bg-color);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            text-align: left;
+            margin-top: 50px;
+        }
+
+        .pricing-card {
+            background: white;
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            border: 1px solid #eee;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pricing-card.highlight {
+            border: 2px solid var(--primary-blue);
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(44, 62, 80, 0.1);
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-family: var(--font-serif);
+            margin: 20px 0;
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        .price span {
+            font-size: 1rem;
+            font-family: var(--font-sans);
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+
+        /* --- NEW SERVICES SECTION (SPLIT LAYOUT) --- */
+        .services-split-wrapper {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            background: white;
+            width: 100%;
+        }
+
+        .service-img-col {
+            position: relative;
+            height: 100%;
+            min-height: 600px;
+        }
+
+        .service-img-col img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0;
+        }
+
+        .service-content-col {
+            padding: 80px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .service-grid-compact {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .service-item-simple {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 24px;
+        }
+
+        .service-item-simple h3 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .service-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .s-tag {
+            font-size: 0.75rem;
+            background: #f5f5f5;
+            border: 1px solid #eee;
+            padding: 3px 10px;
+            border-radius: 20px;
+            color: #666;
+        }
+
+
+        /* --- FAQ --- */
+        .faq {
+            padding: 80px 0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid #ddd;
+            padding: 24px 0;
+        }
+
+        .accordion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .accordion-header h3 {
+            font-size: 1.2rem;
+            font-family: var(--font-sans);
+            font-weight: 500;
+        }
+
+        .icon-plus {
+            font-size: 1.5rem;
+            transition: 0.3s;
+            color: var(--accent-sand);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .accordion-content p {
+            padding-top: 16px;
+        }
+
+        .accordion-item.active .icon-plus {
+            transform: rotate(45deg);
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 200px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--primary-blue);
+            color: white;
+            padding: 80px 0 30px;
+        }
+
+        footer h4 {
+            color: var(--accent-sand);
+            margin-bottom: 20px;
+        }
+
+        footer p,
+        footer a {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 32px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 1024px) {
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .bento-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .card-bio {
+                grid-column: 1 / 3;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .services-split-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .service-img-col {
+                height: 400px;
+                min-height: auto;
+                order: -1;
+            }
+
+            .service-content-col {
+                padding: 40px 24px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero-visual {
+                height: 400px;
+            }
+
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card-bio,
+            .card-photo,
+            .card-stats,
+            .card-detail {
+                grid-column: auto;
+                grid-row: auto;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <input type="hidden" id="_o_dbjbempljhcmhlfpfacalomonjpalpko" data-inspect-config="7">
+    <script type="text/javascript"
+        src="chrome-extension://dbjbempljhcmhlfpfacalomonjpalpko/scripts/inspector.js"></script>
+    <style>
+        .imageye-selected {
+            outline: 2px solid black !important;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) !important;
+        }
+    </style>
+</head>
+
+<body><input type="hidden" id="_o_dbjbempljhcmhlfpfacalomonjpalpko" data-inspect-config="7">
+    <script type="text/javascript"
+        src="chrome-extension://dbjbempljhcmhlfpfacalomonjpalpko/scripts/inspector.js"></script>
+    <style>
+        .imageye-selected {
+            outline: 2px solid black !important;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) !important;
+        }
+    </style><input type="hidden" id="_o_dbjbempljhcmhlfpfacalomonjpalpko" data-inspect-config="7">
+    <script type="text/javascript"
+        src="chrome-extension://dbjbempljhcmhlfpfacalomonjpalpko/scripts/inspector.js"></script>
+    <style>
+        .imageye-selected {
+            outline: 2px solid black !important;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) !important;
+        }
+    </style><input type="hidden" id="_o_dbjbempljhcmhlfpfacalomonjpalpko" data-inspect-config="7">
+    <script type="text/javascript"
+        src="chrome-extension://dbjbempljhcmhlfpfacalomonjpalpko/scripts/inspector.js"></script>
+    <style>
+        .imageye-selected {
+            outline: 2px solid black !important;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) !important;
+        }
+    </style>
+
+
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <span>◆</span> Dott. Luca Buran • Psicologo Sessuologo
+                </div>
+                <div class="nav-links hide-mobile">
+                    <a href="#chi-sono">Chi Sono</a>
+                    <a href="#tariffe">Tariffe</a>
+                    <a href="#servizi">Servizi</a>
+                    <a href="#faq">FAQ</a>
+                </div>
+                <!-- MODIFICA WHATSAPP QUI -->
+                <a href="https://wa.me/393495447220?text=Salve%20Dott.%20Buran%2C%20vorrei%20richiedere%20informazioni%20per%20prenotare%20un%20appuntamento."
+                    class="btn" target="_blank" rel="noopener noreferrer">
+                    Prenota Appuntamento
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content reveal active">
+                    <div class="tag">Psicologia Clinica • Sessuologia • Benessere</div>
+                    <h1>Sostegno, Ascolto, Empatia.</h1>
+                    <p>Un percorso personalizzato per affrontare difficoltà emotive, relazionali e sessuali. Il
+                        benessere
+                        mentale inizia dalla comprensione profonda di sé.</p>
+
+                    <div class="specializations-list">
+                        <span class="spec-badge">Adulti</span>
+                        <span class="spec-badge">Adolescenti</span>
+                        <span class="spec-badge">Terza Età</span>
+                    </div>
+
+                    <div style="display: flex; gap: 16px;">
+                        <!-- MODIFICA WHATSAPP QUI -->
+                        <a href="https://wa.me/391234567890?text=Salve%20Dott.%20Buran%2C%20vorrei%20richiedere%20informazioni%20per%20prenotare%20un%20appuntamento."
+                            class="btn" target="_blank" rel="noopener noreferrer">
+                            Richiedi Colloquio
+                        </a>
+                        <a href="#tariffe" class="btn btn-outline">Vedi Tariffe</a>
+                    </div>
+                </div>
+
+                <div class="hero-visual reveal active">
+                    <img class="hero-img-main" src="img/LUKE1.jpg" alt="Dott. Luca Buran">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- BIO / BENTO GRID SECTION -->
+    <section class="features" id="chi-sono">
+        <div class="container">
+            <div class="bento-grid">
+
+                <div class="bento-card card-bio">
+                    <div class="tag">Il mio percorso</div>
+                    <h2>Competenza trasversale, cura su misura</h2>
+                    <p>Sono il Dott. Luca Buran, Psicologo Clinico e Sessuologo. Il mio interesse per la psicologia
+                        nasce da una passione autentica: non considero questo percorso come un semplice lavoro, ma come
+                        una vocazione.</p>
+                    <p>Attualmente frequento la Scuola di Psicoterapia Comparata (SPC) di Firenze, con l'obiettivo di
+                        integrare diversi modelli teorici in un approccio flessibile, attento unicamente al vissuto del
+                        paziente.</p>
+                </div>
+
+                <div class="bento-card card-photo">
+                    <img src="img/LUCA4GIUNTI_CROP.jpg" alt="Dott. Luca Buran Primo Piano">
+                </div>
+
+                <div class="bento-card card-stats">
+                <div id="js_widget" class="ie-common-widget ie-reviews" style="max-height: 250px;">
+                    <script type="text/javascript" src="https://www.guidapsicologi.it/widget/review_extended?com=203649&h=3e970ae8674f3a1581a244de95be6460&v=10"></script>
+                    <div class="portal-by">
+                        <a id="js_portal_by" href="https://www.guidapsicologi.it?utm_source=203649&utm_medium=widget&utm_campaign=widget-review_extended"  rel="nofollow" style="text-decoration:none;color:#617d97;font-family:Arial, Helvetica, sans-serif,sans-serif;">
+                            Da <span style='color:#149c97;font-family:Arial, Helvetica, sans-serif,sans-serif;font-weight:400;letter-spacing: 0.015em;text-decoration:underline;'>GuidaPsicologi.it</span>
+                        </a>
+                    </div>
+                </div>
+                </div>
+
+                <div class="bento-card card-detail">
+                    <h4>Formazione</h4>
+                    <ul class="list-dot" contenteditable="true" spellcheck="true">
+                        <li>Laurea in Psicologia Clinica</li>
+                        <li>Master in Sessuologia</li>
+                        <li contenteditable="true" spellcheck="true">Scuola Psicoterapia Comparata (In Formazione)</li>
+                        <li>Laurea in Giurisprudenza</li>
+                    </ul>
+                </div>
+
+                <div class="bento-card card-detail" style="background-color: var(--accent-light);">
+                    <h4 style="color: var(--primary-blue);">Ambiti d'Intervento</h4>
+                    <ul class="list-dot" style="color: var(--text-dark);">
+                        <li>Ansia e Stress</li>
+                        <li>Regolazione Emotiva</li>
+                        <li>Dipendenza Affettiva</li>
+                        <li>Dinamiche di Coppia</li>
+                        <li>Sessuologia</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- PRICING SECTION -->
+    <section class="pricing" id="tariffe">
+        <div class="container">
+            <div class="tag">Investimento su sé STESSI</div>
+            <h2>Tariffe trasparenti e accessibili</h2>
+            <p style="color: var(--text-muted); margin-bottom: 20px;">Prima chiamata telefonica conoscitiva gratuita.
+            </p>
+
+            <div class="pricing-grid">
+
+                <div class="pricing-card reveal active">
+                    <h3>Colloquio Online</h3>
+                    <p style="font-size: 0.9rem; color: #666;">Flessibilità da casa.</p>
+                    <div class="price">€50 <span>/seduta</span></div>
+                    <ul class="list-dot">
+                        <li>Videochiamata sicura</li>
+                        <li>Massima privacy</li>
+                        <li>Orari flessibili</li>
+                    </ul>
+                    <!-- PULSANTE STRIPE -->
+                    <a href="https://buy.stripe.com/test_00w3cob6v2PhaA39WRdEs00" class="btn btn-buy" target="_blank">
+                        Acquista Ora
+                    </a>
+                </div>
+
+                <div class="pricing-card highlight reveal active">
+                    <div
+                        style="position: absolute; top:0; right:0; background:var(--primary-blue); color:white; padding: 4px 12px; font-size: 0.7rem; border-bottom-left-radius: 10px;">
+                        CONSIGLIATO</div>
+                    <h3>Seduta in Studio</h3>
+                    <p style="font-size: 0.9rem; color: #666;">Incontro presenziale.</p>
+                    <div class="price">€60 <span>/seduta</span></div>
+                    <ul class="list-dot" contenteditable="true" spellcheck="true">
+                        <li>Ambiente protetto</li>
+                        <li contenteditable="true" spellcheck="true">Relazione diretta</li>
+                    </ul>
+                    <!-- PULSANTE STRIPE -->
+                    <a href="https://buy.stripe.com/test_4gM5kw7Uj0H95fJfhbdEs01" class="btn btn-buy" target="_blank">
+                        Acquista Ora
+                    </a>
+                </div>
+
+                <div class="pricing-card reveal active" style="position: relative;">
+                    <h3>Seduta di Coppia</h3>
+                    <p style="font-size: 0.9rem; color: #666;">Supporto per relazioni.</p>
+                    <div class="price">€80 <span>/seduta</span></div>
+                    <ul class="list-dot">
+                        <li>Problematiche sessuali</li>
+                        <li>Problematiche relazionali</li>
+                        <li>Gestione conflitti</li>
+                    </ul>
+                    <!-- PULSANTE STRIPE -->
+                    <a href="https://buy.stripe.com/test_cNibIU2zZ9dFbE79WRdEs02" class="btn btn-buy" target="_blank">
+                        Acquista Ora
+                    </a>
+                </div>
+
+                <div class="pricing-card reveal active" style="position: relative;">
+                    <h3>Urgenze &amp; Weekend</h3>
+                    <p style="font-size: 0.9rem; color: #666;">Supporto fuori orario.</p>
+                    <div class="price">€90 <span>/seduta</span></div>
+                    <ul class="list-dot">
+                        <li>Disponibilità Sabato/Domenica</li>
+                        <li>Intervento rapido</li>
+                    </ul>
+                    <!-- PULSANTE STRIPE -->
+                    <a href="https://buy.stripe.com/test_00w5kw3E31Ld9vZ2updEs03" class="btn btn-buy" target="_blank">
+                        Acquista Ora
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- NEW SERVICES SECTION (Split Layout) -->
+    <section id="servizi">
+        <div class="services-split-wrapper">
+
+            <div class="service-img-col reveal active">
+                <img src="img/STOCK.jpg" alt="Dott. Luca Buran alla Scrivania">
+            </div>
+
+            <div class="service-content-col reveal active">
+                <div class="tag">Di cosa mi occupo</div>
+                <h2 style="font-size: 2.5rem; margin-bottom: 16px;">Aree di intervento</h2>
+                <p style="color: var(--text-muted); max-width: 600px;">Offro uno spazio di ascolto e comprensione
+                    profonda, integrando diversi modelli teorici per adattarmi alla singola persona.</p>
+
+                <div class="service-grid-compact">
+
+                    <div class="service-item-simple">
+                        <h3><span style="color: var(--accent-sand);">✦</span> Psicologia Clinica</h3>
+                        <p style="font-size: 0.9rem; color: #666;">Supporto per momenti di crisi e difficoltà emotive.
+                        </p>
+                        <div class="service-tags">
+                            <span class="s-tag">Ansia</span>
+                            <span class="s-tag">Stress</span>
+                            <span class="s-tag">Panico</span>
+                            <span class="s-tag">Depressione</span>
+                            <span class="s-tag">Ipocondria</span>
+                            <span class="s-tag">Autostima</span>
+                        </div>
+                    </div>
+
+                    <div class="service-item-simple">
+                        <h3><span style="color: var(--accent-sand);">♥</span> Sessuologia</h3>
+                        <p style="font-size: 0.9rem; color: #666;">Percorsi per problematiche sessuali e relazionali.
+                        </p>
+                        <div class="service-tags">
+                            <span class="s-tag">Disfunzione Erettile</span>
+                            <span class="s-tag">Vaginismo</span>
+                            <span class="s-tag">Anorgasmia</span>
+                            <span class="s-tag">Eiaculazione Precoce</span>
+                            <span class="s-tag">Coppia</span>
+                            <span class="s-tag">Fobie</span>
+                        </div>
+                    </div>
+
+                    <div class="service-item-simple">
+                        <h3><span style="color: var(--accent-sand);">☀</span> Psicologia Sociale &amp; Adolescenza</h3>
+                        <p style="font-size: 0.9rem; color: #666;">Sostegno per affrontare i cambiamenti e le relazioni.
+                        </p>
+                        <div class="service-tags">
+                            <span class="s-tag">Orientamento scolastico</span>
+                            <span class="s-tag">Crisi adolescenziali</span>
+                            <span class="s-tag">Relazioni sociali</span>
+                            <span class="s-tag">Autostima</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- FAQ SECTION -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2 style="margin-bottom: 40px;">Domande Frequenti</h2>
+
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>La prima consulenza è gratuita?</h3>
+                        <span class="icon-plus">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Sì, sono disponibile ad una breve chiamata conoscitiva gratuita per comprendere il problema e
+                            valutare insieme il percorso migliore.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>Come svolgi le sedute?</h3>
+                        <span class="icon-plus">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Sia in presenza che online. L'approccio è
+                            flessibile e orientato alle necessità del paziente.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>Sei disponibile nel fine settimana?</h3>
+                        <span class="icon-plus">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Sì, offro disponibilità anche nel fine settimana per casi di particolare urgenza.</p>
+                    </div>
+                </div>
+
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>Quanto dura una seduta?</h3>
+                        <span class="icon-plus">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Una seduta dura circa 50 minuti.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>Ricevi solo a Firenze?</h3>
+                        <span class="icon-plus">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Ho disponibilità di ricevere in studio a Firenze e Campi Bisenzio.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo" style="margin-bottom: 16px; color: white;">
+                        <span>◆</span> Dott. Luca Buran
+                    </div>
+                    <p>Psicologo Clinico e Sessuologo.<br>Un approccio umano e professionale per il tuo benessere.</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contatti Rapidi</h4>
+                    <ul>
+                        <li><a href="mailto:buranluca88@gmail.com">buranluca88@gmail.com</a></li>
+                        <li><a href="tel:+395447220">+39 349 544 7220 </a></li>
+                        <li><a href="#">Firenze / Campi Bisenzio / Online</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Disponibilità</h4>
+                    <p style="font-size: 0.9rem; opacity: 0.8;">
+                        Ricevo su appuntamento.<br>
+                    </p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div>© 2026 Dott. Luca Buran. Tutti i diritti riservati.</div>
+                <div>P.IVA: 07508040487</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Scroll Reveal Animation
+            const reveals = document.querySelectorAll('.reveal');
+            const revealOnScroll = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            reveals.forEach(el => revealOnScroll.observe(el));
+
+            // FAQ Accordion logic
+            const accordions = document.querySelectorAll('.accordion-header');
+            accordions.forEach(acc => {
+                acc.addEventListener('click', function () {
+                    const item = this.parentElement;
+                    item.classList.toggle('active');
+                });
+            });
+
+            // Smooth Scroll per i link interni
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+    <!-- Code injected by live-server -->
+    <script>
+        // <![CDATA[  <-- For SVG support
+        if ('WebSocket' in window) {
+            (function () {
+                function refreshCSS() {
+                    var sheets = [].slice.call(document.getElementsByTagName("link"));
+                    var head = document.getElementsByTagName("head")[0];
+                    for (var i = 0; i < sheets.length; ++i) {
+                        var elem = sheets[i];
+                        var parent = elem.parentElement || head;
+                        parent.removeChild(elem);
+                        var rel = elem.rel;
+                        if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+                            var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+                            elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+                        }
+                        parent.appendChild(elem);
+                    }
+                }
+                var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+                var address = protocol + window.location.host + window.location.pathname + '/ws';
+                var socket = new WebSocket(address);
+                socket.onmessage = function (msg) {
+                    if (msg.data == 'reload') window.location.reload();
+                    else if (msg.data == 'refreshcss') refreshCSS();
+                };
+                if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+                    console.log('Live reload enabled.');
+                    sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+                }
+            })();
+        }
+        else {
+            console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+        }
+        // ]]>
+    </script>
+
+
+    <script type="module" src="chrome-extension://cdockenadnadldjbbgcallicgledbeoc/toolbar/bundle.min.js"></script>
+    <!-- Code injected by live-server -->
+    <script>
+        // <![CDATA[  <-- For SVG support
+        if ('WebSocket' in window) {
+            (function () {
+                function refreshCSS() {
+                    var sheets = [].slice.call(document.getElementsByTagName("link"));
+                    var head = document.getElementsByTagName("head")[0];
+                    for (var i = 0; i < sheets.length; ++i) {
+                        var elem = sheets[i];
+                        var parent = elem.parentElement || head;
+                        parent.removeChild(elem);
+                        var rel = elem.rel;
+                        if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+                            var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+                            elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+                        }
+                        parent.appendChild(elem);
+                    }
+                }
+                var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+                var address = protocol + window.location.host + window.location.pathname + '/ws';
+                var socket = new WebSocket(address);
+                socket.onmessage = function (msg) {
+                    if (msg.data == 'reload') window.location.reload();
+                    else if (msg.data == 'refreshcss') refreshCSS();
+                };
+                if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+                    console.log('Live reload enabled.');
+                    sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+                }
+            })();
+        }
+        else {
+            console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+        }
+        // ]]>
+    </script>
+    <rq-implicit-test-rule-widget class="rq-element" draggable="true"
+        style="display: none;"></rq-implicit-test-rule-widget>
+    <script type="module" src="chrome-extension://cdockenadnadldjbbgcallicgledbeoc/toolbar/bundle.min.js"></script>
+    <!-- Code injected by live-server -->
+    <script>
+        // <![CDATA[  <-- For SVG support
+        if ('WebSocket' in window) {
+            (function () {
+                function refreshCSS() {
+                    var sheets = [].slice.call(document.getElementsByTagName("link"));
+                    var head = document.getElementsByTagName("head")[0];
+                    for (var i = 0; i < sheets.length; ++i) {
+                        var elem = sheets[i];
+                        var parent = elem.parentElement || head;
+                        parent.removeChild(elem);
+                        var rel = elem.rel;
+                        if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+                            var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+                            elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+                        }
+                        parent.appendChild(elem);
+                    }
+                }
+                var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+                var address = protocol + window.location.host + window.location.pathname + '/ws';
+                var socket = new WebSocket(address);
+                socket.onmessage = function (msg) {
+                    if (msg.data == 'reload') window.location.reload();
+                    else if (msg.data == 'refreshcss') refreshCSS();
+                };
+                if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+                    console.log('Live reload enabled.');
+                    sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+                }
+            })();
+        }
+        else {
+            console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+        }
+        // ]]>
+    </script>
+    <script type="module" src="chrome-extension://cdockenadnadldjbbgcallicgledbeoc/toolbar/bundle.min.js"></script>
+    <!-- Code injected by live-server -->
+    <script>
+        // <![CDATA[  <-- For SVG support
+        if ('WebSocket' in window) {
+            (function () {
+                function refreshCSS() {
+                    var sheets = [].slice.call(document.getElementsByTagName("link"));
+                    var head = document.getElementsByTagName("head")[0];
+                    for (var i = 0; i < sheets.length; ++i) {
+                        var elem = sheets[i];
+                        var parent = elem.parentElement || head;
+                        parent.removeChild(elem);
+                        var rel = elem.rel;
+                        if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+                            var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+                            elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+                        }
+                        parent.appendChild(elem);
+                    }
+                }
+                var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+                var address = protocol + window.location.host + window.location.pathname + '/ws';
+                var socket = new WebSocket(address);
+                socket.onmessage = function (msg) {
+                    if (msg.data == 'reload') window.location.reload();
+                    else if (msg.data == 'refreshcss') refreshCSS();
+                };
+                if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+                    console.log('Live reload enabled.');
+                    sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+                }
+            })();
+        }
+        else {
+            console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+        }
+        // ]]>
+    </script>
+</body>
+
+</html>
